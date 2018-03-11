@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
-from django.views.generic import FormView, DetailView
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
+from django.views.generic import FormView, DetailView
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import ValidationError
+
 from .models import Url
 from .forms import UrlForm
-
 from . import base34
 
 class Home(FormView):
@@ -22,7 +23,6 @@ class Home(FormView):
                 kwargs={'url': base34.encode(new_url.pk)}
             )
         )
-
 
 class ShortUrl(DetailView):
     model = Url
@@ -42,13 +42,18 @@ def store_and_return_shorturl(request):
     if request.method == 'GET':
         try:
             request_url = request.GET['url']
-        except MultiValueDictKeyError:
-            return HttpResponseBadRequest("Invalid or missing query parameter")
+        except MultiValueDictKeyError as e:
+            return JsonResponse({"error" : "Invalid or missing get request"}, status=400)
         new_url = Url(url=request_url)
+        try:
+            new_url.full_clean()
+        except ValidationError as e:
+            return JsonResponse(e.message_dict, status=400)
         new_url.save()
         # join the hostname with the encoded primary key
         short_url = request.META['HTTP_HOST'] + '/' + base34.encode(new_url.pk)
         new_url = {
-            'shorturl' : short_url,
+            'old url' : request_url,
+            'short url' : short_url,
         }
         return JsonResponse(new_url)
