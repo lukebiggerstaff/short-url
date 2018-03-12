@@ -26,6 +26,7 @@ class Home(FormView):
 
 class ShortUrl(DetailView):
     model = Url
+    template_name = 'shortener/short_url.html'
 
     def get_object(self):
         url = self.kwargs['url']
@@ -43,7 +44,10 @@ def store_and_return_shorturl(request):
         try:
             request_url = request.GET['url']
         except MultiValueDictKeyError as e:
-            return JsonResponse({"error" : "Invalid or missing get request"}, status=400)
+            return JsonResponse(
+                {"error" : "Invalid or missing get request"},
+                status=400
+            )
         new_url = Url(url=request_url)
         try:
             new_url.full_clean()
