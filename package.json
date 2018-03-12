@@ -1,0 +1,35 @@
+{
+  "name": "shorturl",
+  "version": "1.0.0",
+  "description": "tinyurl clone",
+  "main": "index.js",
+  "scripts": {
+    "lcss": "node-sass --output shorturl/shortener/static/css shorturl/shortener/static/scss",
+    "bscss": "node-sass --output shorturl/shortener/static/css node_modules/bootstrap/scss/bootstrap.scss",
+    "serve": "browser-sync start -c ./bs-config.js",
+    "watch:lcss": " onchange ./shorturl/shortener/static/scss/*.scss  -- npm run lcss",
+    "watch:all": "npm run bscss && parallelshell  'npm run watch:lcss' 'npm run serve'"
+  },
+  "author": "luke",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "4.0.0-beta",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.21.0",
+    "node-sass": "^4.7.2",
+    "onchange": "^3.3.0",
+    "parallelshell": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukebiggerstaff/short-url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lukebiggerstaff/short-url/issues"
+  },
+  "homepage": "https://github.com/lukebiggerstaff/short-url#readme"
+}
