@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% block body %}
+  <div class="content">
+    <div class="container">
+     <h2 class="api-header">How it works!</h2> 
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-title">
+              <h2>Take a link</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+              You have a long link that you want to post on social media or send it via email, but you're running out of characters or when someone tries to click on the link in email it is not working because it wraps around and the email client renders it useless.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-title">
+              <h2>Shrink it!</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+              Go to {{ request.META.HTTP_HOST }} and you can submit your link via the form. You will be given a new short link to use anywhere you want. You can also create multiple links to the same location and then you can use these different links to track how visitors find your site.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-title">
+              <h2> Use the API</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+              send a http get request to {{ request.META.HTTP_HOST }}/api/create/ with a url parameter and you'll receive a json request back with your new short link. You can automate your short link creation against our API.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

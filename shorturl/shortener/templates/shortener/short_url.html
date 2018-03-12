@@ -1,0 +1,19 @@
+{% include './base.html' %}
+{% block body %}
+<div class="content">
+  <div class="container">
+    <div class="row">
+    <div class="col-10">
+      <div>
+        <h3>Your New Short Link <i class="fa fa-arrow-circle-right"></i><a href="{{request.META.HTTP_HOST}}{{ object.encoded_url }}">  {{ request.META.HTTP_HOST }}{{ object.encoded_url }}</a></h3>
+        {% with new_url_length=object.encoded_url|length %}
+          <p>has <em><strong>ONLY</strong></em>   {{ request.META.HTTP_HOST|length|add:new_url_length }} characters</p>
+        {% endwith %}
+        <h3>Your Old Link <i class="fa fa-arrow-circle-down"></i></h3>
+        <small>{{ object.url }}</small>
+        <p>had <em><strong>{{ object.url|length }}</strong></em> characters!</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
