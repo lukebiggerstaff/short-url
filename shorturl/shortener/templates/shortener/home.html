@@ -1,8 +1,21 @@
-{% include './base.html' %}
+{% extends './base.html' %}
 {% block body %}
-<form method="post" action="">
-  {{ form.as_p }}
-  {% csrf_token %}
-  <button>Submit</button>
-</form>
-{% endblock %}
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 m-auto">
+        <h1>Shrink that link!</h2>
+        <form class="form-group" method="post" action="">
+          {{ form.non_field_errors }}
+          {% csrf_token %}
+          <div class="form-group input-group">
+            {{ form.url.errors }}
+            {{ form.url }}
+          <button class="btn btn-lg input-group-addon btn-dark">SHRINK IT!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
