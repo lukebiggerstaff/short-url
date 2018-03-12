@@ -1,0 +1,92 @@
+$background-color : #fa8072;
+$header-color: darken(#ff0000, 10%);
+
+/* end home page styles */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.nav {
+  background-color: #333;
+  color: white;
+  display: flex;
+  border-bottom: 10px solid red;
+  &-header {
+    margin-right: auto;
+    font-size: 1.5em;
+    display:flex;
+    color: white;
+    align-items:center;
+    padding: 20px 30px;
+    font-family: 'monospace';
+    letter-spacing: .08em;
+    & i {
+      color: darken(tomato, 10%);
+      font-size: 2em;
+      padding: 0 10px;
+    }
+  }
+  &-ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    &--item {
+      font-family: 'monospace';
+      padding: 20px 30px;
+      margin-right: 10px;
+      display:flex;
+      align-items:center;
+      &:hover {
+        background: darken(#333, 10%);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.content {
+  padding-top: 100px;
+  color: white;
+  background: lighten(tomato, 5%);
+  flex: 1;
+}
+.btn {
+  font-family: 'Arial';
+  font-weight: bold;
+  background-color: #333;
+  color: white;
+}
+/* end home page styles */
+
+/* Begin api page styles */
+.api-header {
+  font-size: 3em;
+  font-family: 'monospace';
+  display:flex;
+  justify-content:center;
+  margin-top: 0;
+}
+
+.card {
+  color: black;
+  .card-title {
+    padding: 10px;
+    @media screen and (max-width: 400px){
+      margin-bottom: 15px;
+    }
+  }
+  .card-body {
+    font-size: 1.2em;
+  }
+}
