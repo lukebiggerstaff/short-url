@@ -118,3 +118,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Configure streaming logging
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console' : {
+            'class' : 'logging.StreamHandler',
+        },
+    },
+    'loggers' : {
+        'django' : {
+        'handlers' : ['console'],
+        'level' : os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
+
