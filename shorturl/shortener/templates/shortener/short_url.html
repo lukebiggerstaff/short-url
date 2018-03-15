@@ -5,7 +5,7 @@
     <div class="row">
     <div class="col-10">
       <div>
-        <h3>Your New Short Link <i class="fa fa-arrow-circle-right"></i><a href="{{request.META.HTTP_HOST}}{{ object.encoded_url }}">  {{ request.META.HTTP_HOST }}{{ object.encoded_url }}</a></h3>
+        <h3>Your New Short Link <i class="fa fa-arrow-circle-right"></i>  {{ request.META.HTTP_HOST }}{{ object.encoded_url }}</a></h3>
         {% with new_url_length=object.encoded_url|length %}
           <p>has <em><strong>ONLY</strong></em>   {{ request.META.HTTP_HOST|length|add:new_url_length }} characters</p>
         {% endwith %}
